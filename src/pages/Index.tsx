@@ -12,6 +12,7 @@ const Index = () => {
   const [selectedMethod, setSelectedMethod] = useState('');
 
   const paymentMethods = [
+    { id: 'tbank', name: 'Т-Банк', icon: 'Landmark' },
     { id: 'card', name: 'Банковская карта', icon: 'CreditCard' },
     { id: 'qiwi', name: 'QIWI', icon: 'Wallet' },
     { id: 'yoomoney', name: 'ЮMoney', icon: 'Coins' },
@@ -145,7 +146,7 @@ const Index = () => {
               <div className="space-y-3">
                 <Label>Способ оплаты</Label>
                 <div className="grid grid-cols-2 gap-3">
-                  {paymentMethods.slice(0, 4).map((method) => (
+                  {paymentMethods.slice(0, 5).map((method) => (
                     <button
                       key={method.id}
                       type="button"
@@ -168,7 +169,7 @@ const Index = () => {
                     Криптовалюты
                   </Label>
                   <div className="grid grid-cols-2 gap-3 mt-3">
-                    {paymentMethods.slice(4).map((method) => (
+                    {paymentMethods.slice(5).map((method) => (
                       <button
                         key={method.id}
                         type="button"

@@ -16,6 +16,9 @@ const Index = () => {
     { id: 'qiwi', name: 'QIWI', icon: 'Wallet' },
     { id: 'yoomoney', name: 'ЮMoney', icon: 'Coins' },
     { id: 'sbp', name: 'СБП', icon: 'Smartphone' },
+    { id: 'btc', name: 'Bitcoin (BTC)', icon: 'Bitcoin' },
+    { id: 'eth', name: 'Ethereum (ETH)', icon: 'Hexagon' },
+    { id: 'usdt', name: 'Tether (USDT)', icon: 'DollarSign' },
   ];
 
   const quickAmounts = [100, 300, 500, 1000, 2000, 5000];
@@ -142,7 +145,7 @@ const Index = () => {
               <div className="space-y-3">
                 <Label>Способ оплаты</Label>
                 <div className="grid grid-cols-2 gap-3">
-                  {paymentMethods.map((method) => (
+                  {paymentMethods.slice(0, 4).map((method) => (
                     <button
                       key={method.id}
                       type="button"
@@ -157,6 +160,30 @@ const Index = () => {
                       <span className="font-medium">{method.name}</span>
                     </button>
                   ))}
+                </div>
+                
+                <div className="pt-2">
+                  <Label className="text-secondary flex items-center gap-2">
+                    <Icon name="Bitcoin" size={16} className="text-secondary" />
+                    Криптовалюты
+                  </Label>
+                  <div className="grid grid-cols-2 gap-3 mt-3">
+                    {paymentMethods.slice(4).map((method) => (
+                      <button
+                        key={method.id}
+                        type="button"
+                        onClick={() => setSelectedMethod(method.id)}
+                        className={`flex items-center gap-3 p-4 rounded-lg border-2 transition-all ${
+                          selectedMethod === method.id
+                            ? 'border-secondary bg-secondary/5'
+                            : 'border-border hover:border-secondary/50'
+                        }`}
+                      >
+                        <Icon name={method.icon as any} size={24} className={selectedMethod === method.id ? 'text-secondary' : 'text-muted-foreground'} />
+                        <span className="font-medium text-sm">{method.name}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 

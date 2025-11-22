@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -65,6 +66,12 @@ const Index = () => {
             <a href="#topup" className="text-foreground hover:text-primary transition-colors">Пополнение</a>
             <a href="#faq" className="text-foreground hover:text-primary transition-colors">FAQ</a>
             <a href="#support" className="text-foreground hover:text-primary transition-colors">Поддержка</a>
+            <Button variant="default" asChild>
+              <Link to="/cabinet">
+                <Icon name="User" size={18} className="mr-2" />
+                Личный кабинет
+              </Link>
+            </Button>
           </div>
         </div>
       </nav>

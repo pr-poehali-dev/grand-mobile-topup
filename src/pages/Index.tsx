@@ -12,7 +12,7 @@ const Index = () => {
   const [selectedMethod, setSelectedMethod] = useState('');
 
   const paymentMethods = [
-    { id: 'tbank', name: 'Т-Банк', icon: 'Landmark' },
+    { id: 'tbank', name: 'Т-Банк', icon: 'Landmark', cashback: '5%' },
     { id: 'card', name: 'Банковская карта', icon: 'CreditCard' },
     { id: 'qiwi', name: 'QIWI', icon: 'Wallet' },
     { id: 'yoomoney', name: 'ЮMoney', icon: 'Coins' },
@@ -151,7 +151,7 @@ const Index = () => {
                       key={method.id}
                       type="button"
                       onClick={() => setSelectedMethod(method.id)}
-                      className={`flex items-center gap-3 p-4 rounded-lg border-2 transition-all ${
+                      className={`flex items-center gap-3 p-4 rounded-lg border-2 transition-all relative ${
                         selectedMethod === method.id
                           ? 'border-primary bg-primary/5'
                           : 'border-border hover:border-primary/50'
@@ -159,6 +159,11 @@ const Index = () => {
                     >
                       <Icon name={method.icon as any} size={24} className={selectedMethod === method.id ? 'text-primary' : 'text-muted-foreground'} />
                       <span className="font-medium">{method.name}</span>
+                      {method.cashback && (
+                        <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                          {method.cashback}
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -187,6 +192,18 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+
+              {selectedMethod === 'tbank' && amount && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                  <div className="flex items-center gap-2 text-green-700">
+                    <Icon name="Gift" size={20} />
+                    <span className="font-semibold">Кэшбэк 5%</span>
+                  </div>
+                  <p className="text-sm text-green-600 mt-1">
+                    Вы получите +{(parseFloat(amount) * 0.05).toFixed(0)} ₽ кэшбэка при пополнении
+                  </p>
+                </div>
+              )}
 
               <Button
                 type="submit"
